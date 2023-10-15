@@ -1,1 +1,0 @@
-%windir%\system32\cmd.exe /NOCONSOLE /MIN /v /c "set __COMPAT_LAYER=RUNASINVOKER && %CD:~0,2%"%CD:~2%\Microsoft-Office365.bat""
